@@ -10,13 +10,13 @@ for file in os.listdir():
         files.append(file)
 
 with open("key.key", "rb") as keyread:
-    mykey = keyread.read()
+    mykey = keyread.read()      #reading the key
 
 for file in files:
     with open(file, "rb") as fileread:
-        file_content = fileread.read()
-    decrypted_content = Fernet(mykey).decrypt(file_content)
+        file_content = fileread.read()      #reading encryted file contents
+    decrypted_content = Fernet(mykey).decrypt(file_content)     #decrypting the files using Fernet
     with open(file, "wb") as filewrite:
-        filewrite.write(decrypted_content)
+        filewrite.write(decrypted_content)  #writing decrypted files to the files
 
 print("FILES UNLOCKED! ENJOY YOUR POTATO PC")
